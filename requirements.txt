@@ -1,0 +1,13 @@
+# Full optional environment used by historical research configurations.
+# For the public synthetic smoke path, prefer: pip install -e ".[dev]"
+pandas>=2.0
+numpy>=1.24
+pyarrow>=12.0
+yfinance>=0.2
+PyYAML>=6.0
+scikit-learn>=1.3
+scipy>=1.10
+matplotlib>=3.7
+# Optional preferred M3 backends. If neither is installed, sklearn GradientBoostingClassifier is used.
+lightgbm>=4.0
+xgboost>=2.0

@@ -1,0 +1,72 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "equity-direction-falsification"
+version = "0.1.0"
+description = "Research infrastructure for falsifying short-horizon equity direction signals"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Information Analysis",
+]
+dependencies = [
+  "numpy>=1.24,<3",
+  "pandas>=2.0,<4",
+  "pyarrow>=12,<25",
+  "PyYAML>=6,<7",
+]
+
+[project.optional-dependencies]
+providers = ["yfinance>=0.2,<2"]
+ml = ["scikit-learn>=1.3,<2"]
+boosting = ["lightgbm>=4,<5", "xgboost>=2,<4"]
+plots = ["matplotlib>=3.7,<4"]
+dev = ["ruff>=0.9,<1", "scikit-learn>=1.3,<2"]
+notebooks = ["jupyterlab>=4,<5", "matplotlib>=3.7,<4", "seaborn>=0.13,<1"]
+full = [
+  "yfinance>=0.2,<2",
+  "scikit-learn>=1.3,<2",
+  "lightgbm>=4,<5",
+  "xgboost>=2,<4",
+  "matplotlib>=3.7,<4",
+]
+
+[project.scripts]
+equity-direction-research = "main:main"
+
+[tool.setuptools]
+py-modules = ["main"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = [
+  "backtest*",
+  "core*",
+  "data*",
+  "features*",
+  "metrics*",
+  "reports*",
+  "strategies*",
+]
+exclude = ["tests*", "scripts*"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+extend-exclude = [
+  ".venv",
+  "data/cache*",
+  "reports/output*",
+]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]

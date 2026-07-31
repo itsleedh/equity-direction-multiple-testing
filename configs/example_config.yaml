@@ -1,0 +1,53 @@
+{
+  "seed": 20260731,
+  "universe": ["SYNTH"],
+  "timeframes": ["1d"],
+  "synthetic": {
+    "sample_file": "../data/sample/synthetic_ohlcv.csv",
+    "symbol": "SYNTH",
+    "timeframe": "1d"
+  },
+  "target": {
+    "mode": "binary",
+    "horizon_bars": 1,
+    "flat_band": {
+      "method": "fixed_bps",
+      "fixed_bps": 5
+    }
+  },
+  "execution": {
+    "entry_lag_bars": 1,
+    "round_trip_cost_bps": 5
+  },
+  "walk_forward": {
+    "mode": "expanding",
+    "initial_train_bars": 180,
+    "test_bars": 40,
+    "purge_lookback_bars": 20,
+    "embargo_bars": 1,
+    "min_train_bars": 100,
+    "adaptive": false
+  },
+  "backtest": {
+    "persist_train_predictions": false
+  },
+  "strategies": {
+    "ma_crossover": {
+      "fast": 20,
+      "slow": 50
+    }
+  },
+  "ml": {
+    "enabled": false
+  },
+  "reports": {
+    "output_dir": "../artifacts/smoke"
+  },
+  "intraday_scalping": {
+    "enabled": false,
+    "timeframes": ["1m", "5m", "15m"],
+    "timezone": "America/New_York",
+    "regular_hours_only": true,
+    "cost_sensitivity_bps": [0, 1, 2, 5]
+  }
+}

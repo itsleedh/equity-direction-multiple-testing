@@ -1,0 +1,84 @@
+{
+  "seed": 42,
+  "universe": ["AAPL", "MSFT", "NVDA", "GOOGL", "AMZN", "META", "TSLA", "AVGO", "LLY", "JPM"],
+  "timeframes": ["1h", "1d", "1wk"],
+  "data": {
+    "provider": "yfinance",
+    "cache_dir": "../data/cache",
+    "auto_adjust": true,
+    "daily_years": 10,
+    "hourly_period": "730d",
+    "intraday_periods": {
+      "1m": "7d",
+      "5m": "60d",
+      "15m": "60d"
+    },
+    "provider_rate_limit_seconds": 0,
+    "weekly_resample_rule": "W-FRI",
+    "offline": false
+  },
+  "target": {
+    "mode": "binary",
+    "horizon_bars": 1,
+    "flat_band": {
+      "method": "atr",
+      "atr_period": 14,
+      "fixed_bps": 5
+    }
+  },
+  "execution": {
+    "entry_lag_bars": 1,
+    "round_trip_cost_bps": 5
+  },
+  "walk_forward": {
+    "mode": "expanding",
+    "initial_train_bars": 500,
+    "test_bars": 126,
+    "purge_lookback_bars": 200,
+    "embargo_bars": 1,
+    "min_train_bars": 60,
+    "adaptive": true
+  },
+  "strategies": {
+    "ma_crossover": {
+      "fast": 20,
+      "slow": 50
+    },
+    "mean_reversion": {
+      "rsi_oversold": 30,
+      "rsi_overbought": 70
+    }
+  },
+  "models": {
+    "random_state": 42,
+    "logistic_regression": {
+      "C": 1.0,
+      "max_iter": 1000
+    },
+    "random_forest": {
+      "n_estimators": 300,
+      "max_depth": 6,
+      "min_samples_leaf": 25
+    },
+    "gradient_boosting": {
+      "n_estimators": 300,
+      "learning_rate": 0.03,
+      "max_depth": 3
+    }
+  },
+  "reports": {
+    "output_dir": "../reports/output"
+  },
+  "intraday_scalping": {
+    "enabled": false,
+    "provider": "yfinance",
+    "timeframes": ["1m", "5m", "15m"],
+    "timezone": "America/New_York",
+    "regular_hours_only": true,
+    "no_new_entries_after": "15:55",
+    "force_flat_by": "16:00",
+    "spread_cost_bps": 2,
+    "slippage_bps": 3,
+    "cost_sensitivity_bps": [0, 1, 2, 5]
+  }
+}

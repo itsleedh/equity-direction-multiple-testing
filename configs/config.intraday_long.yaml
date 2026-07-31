@@ -1,0 +1,84 @@
+{
+  "seed": 42,
+  "universe": [],
+  "universe_membership": {
+    "file": "universe_pit.yaml",
+    "mode": "evaluation_mask"
+  },
+  "timeframes": ["5m"],
+  "data": {
+    "provider": "alpaca",
+    "cache_dir": "../data/cache_intraday",
+    "auto_adjust": true,
+    "daily_years": 10,
+    "hourly_period": "730d",
+    "intraday_periods": {
+      "1m": "7d",
+      "5m": "60d",
+      "15m": "60d"
+    },
+    "provider_rate_limit_seconds": 1,
+    "weekly_resample_rule": "W-FRI",
+    "offline": false
+  },
+  "target": {
+    "mode": "binary",
+    "horizon_bars": 1,
+    "flat_band": {
+      "method": "fixed_bps",
+      "atr_period": 14,
+      "fixed_bps": 5
+    }
+  },
+  "execution": {
+    "entry_lag_bars": 1,
+    "round_trip_cost_bps": 5
+  },
+  "walk_forward": {
+    "mode": "expanding",
+    "initial_train_bars": 500,
+    "test_bars": 300,
+    "purge_lookback_bars": 60,
+    "embargo_bars": 1,
+    "min_train_bars": 120,
+    "adaptive": true
+  },
+  "models": {
+    "random_state": 42,
+    "logistic_regression": {
+      "C": 1.0,
+      "max_iter": 1000
+    },
+    "random_forest": {
+      "n_estimators": 30,
+      "max_depth": 5,
+      "min_samples_leaf": 25
+    },
+    "gradient_boosting": {
+      "n_estimators": 30,
+      "learning_rate": 0.05,
+      "max_depth": 2
+    }
+  },
+  "ml": {
+    "enabled": false
+  },
+  "backtest": {
+    "persist_train_predictions": false
+  },
+  "reports": {
+    "output_dir": "../reports/output_intraday_long"
+  },
+  "intraday_scalping": {
+    "enabled": true,
+    "provider": "alpaca",
+    "timeframes": ["5m"],
+    "timezone": "America/New_York",
+    "regular_hours_only": true,
+    "no_new_entries_after": "15:55",
+    "force_flat_by": "16:00",
+    "spread_cost_bps": 2,
+    "slippage_bps": 3,
+    "cost_sensitivity_bps": [0, 1, 2, 5]
+  }
+}

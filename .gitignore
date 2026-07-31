@@ -1,0 +1,68 @@
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+dist/
+build/
+*.egg-info/
+
+# Notebooks and editors
+.ipynb_checkpoints/
+.idea/
+.vscode/
+*.swp
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Licensed/private/local data
+data/raw/
+data/private/
+data/vendor/
+data/cache/
+data/cache_*/
+
+# Generated research artifacts
+outputs/
+artifacts/
+checkpoints/
+logs/
+reports/output*/
+reports/.matplotlib/
+
+# Large or unsafe serialized artifacts
+*.parquet
+*.feather
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.joblib
+*.pt
+*.pth
+*.ckpt
+
+# Local historical working records retained outside the public portfolio
+progress_log.md
+FINAL_REPORT.md
+RESEARCH_SUMMARY.md
+dashboard.html
+final_report.html
+retrospective.html
+docs/codex_task_prompt*.md
+docs/handover_v6.md
+docs/trading_bot_dev_prompt.md
+docs/progress_report.html

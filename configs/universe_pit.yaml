@@ -1,0 +1,17 @@
+{
+  "selection": "top10_us_marketcap_pit",
+  "notes": "Point-in-time top-10 US-domiciled companies by whole-company market cap (all share classes combined). Membership for calendar year Y is the ranking as of the last trading day of year Y-1, so no look-ahead enters universe selection. Rankings verified 2026-07-17 against Wikipedia 'List of public corporations by market capitalization', finhacker.cz year-end tables, iweblists.com Wayback captures, companiesmarketcap.com, stockanalysis.com, and SEC filings share counts. Tie decisions: 2017 #10 WFC over GE (effective tie ~$1-3B at 2016 year-end; 10-K share-count math and the nearest iweblists capture put WFC ahead); 2022 #9-10 UNH/V over JPM (spread ~$7B); 2023 #10 JPM over TSLA (~$4B); 2024 #10 V over AVGO (AVGO ~$522B on post-VMware 10-K share count, still #11). No company in any list has been delisted, acquired, or taken private through 2026-07; FB renamed META (ticker 2022), GE remains listed as GE Aerospace after spin-offs. Union = 19 tickers.",
+  "memberships": {
+    "2016": ["AAPL", "GOOGL", "MSFT", "BRK-B", "XOM", "AMZN", "META", "GE", "JNJ", "WFC"],
+    "2017": ["AAPL", "GOOGL", "MSFT", "BRK-B", "XOM", "AMZN", "META", "JNJ", "JPM", "WFC"],
+    "2018": ["AAPL", "GOOGL", "MSFT", "AMZN", "META", "BRK-B", "JNJ", "JPM", "XOM", "BAC"],
+    "2019": ["MSFT", "AAPL", "AMZN", "GOOGL", "BRK-B", "META", "JNJ", "JPM", "V", "XOM"],
+    "2020": ["AAPL", "MSFT", "GOOGL", "AMZN", "META", "BRK-B", "JPM", "V", "JNJ", "WMT"],
+    "2021": ["AAPL", "MSFT", "AMZN", "GOOGL", "META", "TSLA", "BRK-B", "V", "JNJ", "WMT"],
+    "2022": ["AAPL", "MSFT", "GOOGL", "AMZN", "TSLA", "META", "NVDA", "BRK-B", "UNH", "V"],
+    "2023": ["AAPL", "MSFT", "GOOGL", "AMZN", "BRK-B", "UNH", "JNJ", "XOM", "V", "JPM"],
+    "2024": ["AAPL", "MSFT", "GOOGL", "AMZN", "NVDA", "META", "TSLA", "BRK-B", "LLY", "V"],
+    "2025": ["AAPL", "NVDA", "MSFT", "GOOGL", "AMZN", "META", "TSLA", "AVGO", "BRK-B", "WMT"],
+    "2026": ["NVDA", "AAPL", "GOOGL", "MSFT", "AMZN", "META", "AVGO", "TSLA", "BRK-B", "LLY"]
+  }
+}

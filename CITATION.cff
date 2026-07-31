@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this research software, cite it and report the exact data, configuration, and evaluation period."
+title: "Equity Direction Prediction under Multiple-Testing Controls"
+type: software
+authors:
+  - name: "Project contributors"
+version: 0.1.0
+license: MIT
+abstract: >-
+  A reproducible Python research system for testing whether short-horizon
+  equity direction signals survive leakage controls, realistic execution
+  assumptions, out-of-sample validation, and multiple-testing corrections.
+keywords:
+  - quantitative finance
+  - backtesting
+  - multiple testing
+  - leakage prevention
+  - negative results

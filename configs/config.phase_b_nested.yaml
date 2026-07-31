@@ -1,0 +1,100 @@
+{
+  "seed": 42,
+  "universe": ["AAPL"],
+  "timeframes": ["1d"],
+  "data": {
+    "provider": "yfinance",
+    "cache_dir": "../data/cache",
+    "auto_adjust": true,
+    "daily_years": 10,
+    "hourly_period": "730d",
+    "intraday_periods": {
+      "1m": "7d",
+      "5m": "60d",
+      "15m": "60d"
+    },
+    "provider_rate_limit_seconds": 0,
+    "weekly_resample_rule": "W-FRI",
+    "offline": true
+  },
+  "target": {
+    "mode": "binary",
+    "horizon_bars": 1,
+    "flat_band": {
+      "method": "atr",
+      "atr_period": 14,
+      "fixed_bps": 5
+    }
+  },
+  "execution": {
+    "entry_lag_bars": 1,
+    "round_trip_cost_bps": 5,
+    "confidence_threshold": 0.55
+  },
+  "walk_forward": {
+    "mode": "expanding",
+    "initial_train_bars": 1000,
+    "test_bars": 500,
+    "purge_lookback_bars": 200,
+    "embargo_bars": 1,
+    "min_train_bars": 120,
+    "adaptive": true,
+    "cpcv": {
+      "n_groups": 8,
+      "n_test_groups": 2
+    }
+  },
+  "strategies": {
+    "ma_crossover": {
+      "fast": 20,
+      "slow": 50
+    }
+  },
+  "ml": {
+    "threshold_selection": {
+      "method": "nested",
+      "grid": [0.50, 0.52, 0.55, 0.58, 0.60],
+      "objective": "net_cumulative_return"
+    },
+    "feature_selection": {
+      "method": "importance",
+      "top_k": 15
+    },
+    "calibration": {
+      "enabled": true,
+      "method": "sigmoid",
+      "cv": 3
+    },
+    "logistic": {
+      "C": 0.35,
+      "max_iter": 1000
+    },
+    "random_forest": {
+      "n_estimators": 60,
+      "max_depth": 4,
+      "min_samples_leaf": 75,
+      "max_features": "sqrt"
+    },
+    "gradient_boosting": {
+      "n_estimators": 60,
+      "learning_rate": 0.04,
+      "max_depth": 2,
+      "subsample": 0.8
+    }
+  },
+  "reports": {
+    "output_dir": "../reports/output_phase_b_nested"
+  },
+  "intraday_scalping": {
+    "enabled": false,
+    "provider": "yfinance",
+    "timeframes": ["1m", "5m", "15m"],
+    "timezone": "America/New_York",
+    "regular_hours_only": true,
+    "no_new_entries_after": "15:55",
+    "force_flat_by": "16:00",
+    "spread_cost_bps": 2,
+    "slippage_bps": 3,
+    "cost_sensitivity_bps": [0, 1, 2, 5]
+  }
+}
