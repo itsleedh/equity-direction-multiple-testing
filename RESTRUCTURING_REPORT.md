@@ -223,21 +223,17 @@ The public documentation now separately covers:
 - security findings; and
 - a staged public-release checklist.
 
-## 12. Remaining blockers
+## 12. Remaining owner decisions
 
-1. **No Git repository exists.** History, tracked files, staged files, remotes,
-   and HEAD invariance cannot be audited.
-2. **The repository owner must confirm licensing.** The textual scan found no
+1. **The repository owner must confirm licensing.** The textual scan found no
    third-party code notice, but ownership cannot be proven automatically.
-3. **Data-provider rights require manual review.** Raw/cache data must remain
+2. **Data-provider rights require manual review.** Raw/cache data must remain
    excluded.
-4. **The v1–v4 “442 combinations” denominator lacks one reconstructable
+3. **The v1–v4 “442 combinations” denominator lacks one reconstructable
    manifest.** It is disclosed as a historical reported count.
-5. **CI has not run remotely.** The YAML parses locally and uses minimal
-   permissions, but only GitHub can validate the hosted run.
-6. **Citation identity is generic.** The owner should decide whether to add a
+4. **Citation identity is generic.** The owner should decide whether to add a
    verified public author name.
-7. **Generated HTML and legacy internal records are excluded.** Publishing any
+5. **Generated HTML and legacy internal records are excluded.** Publishing any
    of them requires a separate content and privacy review.
 
 ## 13. Recommended manual review
@@ -252,10 +248,10 @@ The public documentation now separately covers:
   for public release.
 - Confirm code ownership and the MIT license.
 - Confirm citation author metadata.
-- Initialize the intended repository, stage only reviewed files, and rerun the
-  security script.
-- Inspect `git status --short`, the staged file list, staged file sizes, and the
-  complete staged diff before approving a commit.
+- For every future change, stage only reviewed files and rerun the security
+  script.
+- Inspect `git status --short`, staged paths, staged sizes, and the complete
+  staged diff before approving another commit.
 
 ## 14. Git release handoff
 
@@ -265,12 +261,16 @@ explicit allowlist, and the staged snapshot was checked for ignored private
 records, credentials, personal paths, unsafe serialized files, and files larger
 than 10 MiB before the first commit.
 
-No remote has been configured, and no push, tag, release, pull request, or
-history rewrite has been performed. Before publishing, review the destination
-URL and keep credentials out of the remote URL:
+After a second explicit owner approval, a credential-free HTTPS `origin` was
+configured and `main` was pushed to the new public GitHub repository. The
+GitHub Actions matrix passed on Python 3.11 and 3.12, including installation,
+lint, unit tests, and the synthetic smoke test.
+
+No tag, release, pull request, or history rewrite beyond the pre-publication
+noreply-author amend was performed. Future pushes should retain the same
+security checks:
 
 ```bash
-git remote add origin <credential-free-repository-url>
 git remote -v
 ./scripts/security_check.sh
 git push -u origin main

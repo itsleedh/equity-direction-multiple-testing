@@ -17,10 +17,10 @@
 - [x] The post-change canonical suite passed 86 tests in the existing local
   environment.
 - [x] The synthetic smoke command passed in the existing local environment.
-- [ ] The final post-change suite passes in a clean environment.
-- [ ] The synthetic smoke command passes in a clean environment.
-- [ ] Package installation succeeds from `pyproject.toml`.
-- [ ] CI has been reviewed and run on GitHub.
+- [x] The final post-change suite passes in a clean environment.
+- [x] The synthetic smoke command passes in a clean environment.
+- [x] Package installation succeeds from `pyproject.toml`.
+- [x] CI has been reviewed and run on GitHub.
 - [ ] Optional ML backend differences have been reviewed.
 
 ## Data and licensing
@@ -31,7 +31,7 @@
 - [x] The code license is separated from third-party data rights.
 - [ ] Data-provider terms and redistribution restrictions have been reviewed by
   the repository owner.
-- [ ] No raw licensed market data is staged for commit.
+- [x] No raw licensed market data is staged for commit.
 - [ ] Every file selected for the first commit has been manually inspected.
 
 ## Security and privacy
@@ -54,8 +54,8 @@
 - [x] AI assistance is disclosed.
 - [x] The security audit and restructuring report exist.
 - [ ] Citation author metadata has been confirmed by the repository owner.
-- [ ] The repository name and public description have been selected.
+- [x] The repository name and public description have been selected.
 - [ ] The user has manually reviewed `git diff` or an equivalent file-by-file
   comparison.
 - [x] The user has approved commit.
-- [ ] The user has approved push.
+- [x] The user has approved push.

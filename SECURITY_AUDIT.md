@@ -18,8 +18,9 @@ The audit included:
 
 The workspace had no pre-existing Git repository or history. It was initialized
 on `main` only after the working-tree audit, and the exact first-commit snapshot
-was then inspected separately. No remote is configured. The public content scan
-excluded `.venv`, local data caches, ignored `reports/output*` trees, generated
+was then inspected separately. A credential-free HTTPS `origin` was configured
+and pushed only after explicit owner approval. The public content scan excluded
+`.venv`, local data caches, ignored `reports/output*` trees, generated
 `artifacts`, and legacy internal work records. Those excluded paths were
 inventoried separately.
 
@@ -80,11 +81,14 @@ than reporting an apparently clean result.
 Pre-initialization inspection established that this folder had no Git
 repository or history. The new repository was created on `main`, the complete
 first-commit file set was staged explicitly, and staged paths, contents, and
-sizes were inspected before commit. No remote URL is configured.
+sizes were inspected before commit. The configured `origin` uses a
+credential-free HTTPS URL, and the complete reachable history was scanned
+before and after publication.
 
-At the point this report enters history, that history consists only of the
-audited initial snapshot. If these files are later copied into an existing
-repository, that repository's complete history must be scanned separately.
+The initial commit contains the audited source snapshot; the following commit
+updates publication-status documentation without adding source code, data, or
+credentials. If these files are later copied into an existing repository, that
+repository's complete history must be scanned separately.
 
 Severity: **Informational**
 
@@ -232,8 +236,8 @@ None found within the performed scope.
 1. Ignored local work records contain user-specific absolute paths.
 2. Generated HTML reports were excluded instead of exhaustively content-audited.
 3. Dependency resolution is bounded but not locked.
-4. GitHub Actions syntax was parsed as YAML but not validated with `actionlint`
-   or a real workflow run.
+4. `actionlint` was not installed; GitHub nevertheless accepted the workflow,
+   and the initial public push completed the full CI matrix successfully.
 
 ### Informational
 
@@ -259,10 +263,10 @@ Before selecting a first commit, manually inspect:
 ## 13. Public-release recommendation
 
 Within the performed working-tree scan, the proposed public source set has no
-identified Critical or High severity secret finding. It is suitable for a
-manual staged-set review, **not yet for immediate public push**.
+identified Critical or High severity secret finding. The exact staged set and
+reachable Git history were reviewed before the owner-approved public push.
 
-Before publication, initialize or choose the intended Git repository, stage
-only reviewed files, rerun `scripts/security_check.sh`, inspect the staged file
-list and large files, confirm code/data licensing, and review any resulting Git
-history.
+For future changes, stage only reviewed files, rerun
+`scripts/security_check.sh`, inspect staged paths and sizes, and rescan all new
+history before pushing. Code ownership and third-party data rights remain
+repository-owner decisions.
